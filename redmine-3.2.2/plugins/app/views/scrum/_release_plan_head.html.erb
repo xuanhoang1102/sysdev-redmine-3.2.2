@@ -1,0 +1,15 @@
+<table class="box attributes">
+  <%= render :partial => "scrum/velocity_form",
+             :locals => {:url => project_release_plan_path(@project),
+                         :sprints_count => @sprints_count,
+                         :velocity => @velocity,
+                         :velocity_type => @velocity_type} %>
+  <tr>
+    <td>
+      <%= l(:label_release_plan_stats,
+            :sps => @total_story_points,
+            :pbis => @pbis_with_estimation,
+            :pbis_without_sps => @pbis_without_estimation) %>
+    </td>
+  </tr>
+</table>

@@ -1,0 +1,18 @@
+<div class="contextual scrum-menu">
+  <%- if User.current.allowed_to?(:view_product_backlog, @project) -%>
+    <%= link_to(l(:label_product_backlog), project_product_backlog_index_path(@project),
+                :class => "icon icon-product-backlog") %>
+  <%- end -%>
+  <%- if User.current.allowed_to?(:view_product_backlog_burndown, @project) -%>
+    <%= link_to(l(:label_product_backlog_burndown_chart), burndown_project_product_backlog_index_path(@project),
+                :class => "icon icon-burndown") %>
+  <%- end -%>
+  <%- if User.current.allowed_to?(:view_release_plan, @project) -%>
+    <%= link_to(l(:label_release_plan), project_release_plan_path(@project),
+                :class => "icon icon-release-plan") %>
+  <%- end -%>
+  <%- if User.current.allowed_to?(:manage_sprints, @project) and @product_backlog -%>
+    <%= link_to("", edit_sprint_path(@product_backlog, :back_url => url_for(params)),
+                :class => "icon icon-edit", :title => l(:button_edit)) %>
+  <%- end -%>
+</div>

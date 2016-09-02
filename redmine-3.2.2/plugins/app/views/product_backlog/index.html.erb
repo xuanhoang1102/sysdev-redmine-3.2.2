@@ -1,0 +1,25 @@
+<%= render :partial => "common/scrum_backlog_menu" %>
+
+<h2><%= l(:label_product_backlog) %></h2>
+
+<%= render :partial => "product_backlog/actions",
+           :locals => {:project => @project, :top => true} %>
+
+<ul id="pbis" class="pbis">
+  <%- @pbis.each do |pbi| -%>
+    <%= render :partial => "post_its/product_backlog/pbi",
+               :locals => {:project => @project, :pbi => pbi, :read_only => false} %>
+  <%- end -%>
+</ul>
+
+<%= render :partial => "product_backlog/actions",
+           :locals => {:project => @project, :top => false} %>
+
+<%- if User.current.allowed_to?(:edit_product_backlog, @project) -%>
+  <%= render :partial => "post_its/product_backlog/pbis",
+             :formats => [:js], :locals => {:project => @project} %>
+<%- end -%>
+
+<%= render :partial => "common/scrum_footer" %>
+
+<%- heads_for_wiki_formatter -%>
