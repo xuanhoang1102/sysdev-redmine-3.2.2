@@ -1,0 +1,1 @@
+match 'reports/:id', :to => 'report#work_time_report', :via => [:get, :post]
